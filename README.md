@@ -5,17 +5,20 @@ Tick sound
 ## Installation
 
 ```sh
-npm install react-native-tick-sound
+yarn add react-native-tick-sound
+cd ios
+pod install
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-tick-sound';
+import { playSound, stopSound } from 'react-native-tick-sound';
+const rate = 1;
+playSound(rate);
 
 // ...
 
-const result = await multiply(3, 7);
 ```
 
 ## Contributing

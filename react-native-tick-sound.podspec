@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/balmasich/react-native-tick-sound.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
-
+  s.ios.resource_bundle = { 'Media' => 'ios/**/*.xcassets' }
   s.dependency "React-Core"
 
   # Don't install the dependencies when we run `pod install` in the old architecture.

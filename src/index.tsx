@@ -17,6 +17,10 @@ const TickSound = NativeModules.TickSound
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return TickSound.multiply(a, b);
-}
+export const playSound = (rate: number = 1) => {
+  TickSound.stopSound();
+  TickSound.playSound(rate);
+};
+export const stopSound = () => {
+  TickSound.stopSound();
+};

@@ -1,20 +1,22 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-tick-sound';
+import { StyleSheet, View } from 'react-native';
+import { playSound, stopSound } from 'react-native-tick-sound';
 
+let id: number | null = null;
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+  useEffect(() => {
+    id = setInterval(() => {
+      playSound(1);
+    }, 2000);
+    return () => {
+      id !== null && clearInterval(id);
+      id = null;
+      stopSound();
+    };
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
+  return <View style={styles.container} />;
 }
 
 const styles = StyleSheet.create({
