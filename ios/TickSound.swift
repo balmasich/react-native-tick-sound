@@ -11,9 +11,7 @@ class TickSound: NSObject {
     
     @objc(playSound:)
     func playSound(rate: NSInteger) -> Void {
-        print("HERE:LOW");
         if let asset = NSDataAsset(name: "beep") {
-            print("HERE");
             do {
                 player = try AVAudioPlayer(data:asset.data);
                 player?.enableRate = true;
@@ -33,7 +31,6 @@ class TickSound: NSObject {
         if ((player) != nil) {
             player?.stop();
         }
-
     }
     
 }
