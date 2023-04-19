@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 
 import { StyleSheet, View } from 'react-native';
-import { playSound, stopSound } from 'react-native-tick-sound';
+import { playSound, stopSound, TIMER } from 'react-native-tick-sound';
 
-let id: number | null = null;
+let id: ReturnType<typeof setInterval> | null = null;
+
 export default function App() {
   useEffect(() => {
     id = setInterval(() => {
-      playSound(1);
-    }, 2000);
+      playSound();
+    }, TIMER.MAX);
     return () => {
       id !== null && clearInterval(id);
       id = null;

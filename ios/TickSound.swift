@@ -9,25 +9,31 @@ class TickSound: NSObject {
     
     var player: AVAudioPlayer?
     
-    @objc(playTickSound:)
-    func playTickSound(soundID: NSInteger) -> Void {
-        AudioServicesPlaySystemSound(SystemSoundID(soundID));
-    }
-    
-    @objc(stopTickSound)
-    func stopTickSound() -> Void {
-
-    }
-
-    @objc(playSound)
-    func playSound() -> Void {
-        if let asset = NSDataAsset(name: "TagSound") {
+    @objc(playSound:)
+    func playSound(rate: NSInteger) -> Void {
+        print("HERE:LOW");
+        if let asset = NSDataAsset(name: "beep") {
+            print("HERE");
             do {
-                player = try AVAudioPlayer(data:asset.data, fileTypeHint:"wav")
-                player?.play()
+                player = try AVAudioPlayer(data:asset.data);
+                player?.enableRate = true;
+                player?.prepareToPlay();
+                player?.rate = Float(truncating: rate as NSNumber);
+                player?.play();
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
+        } else {
+            print("Not Found")
         }
     }
+    
+    @objc(stopSound)
+    func stopSound() -> Void {
+        if ((player) != nil) {
+            player?.stop();
+        }
+
+    }
+    
 }

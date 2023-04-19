@@ -17,6 +17,11 @@ const TickSound = NativeModules.TickSound
       }
     );
 
+export const TIMER = {
+  MIN: 120,
+  MAX: 1000,
+} as const;
+
 export const playSound = (rate: number = 1) => {
   TickSound.stopSound();
   TickSound.playSound(rate);
